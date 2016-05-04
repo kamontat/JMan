@@ -12,40 +12,50 @@ public abstract class Piece {
 	public static final int WALKER = 2; // piece is a walker
 	public static final int PILLAR = 3; // piece is a pillar
 
+	public static final Color white = new Color(255, 255, 255);
+
+	private int type;
+	private Map map;
+	private Color color;
+	private int[] position = new int[2];
+	private boolean act;
+
 	/**
 	 * Constructor: a Piece on Map m with type t.
 	 * Precondition: type is one of the four constants of this class.
 	 */
 	public Piece(int t, Map m) {
 
+		type = t;
+		map = m;
 	}
 
 	/**
 	 * = this piece's type: (one of the four constants of this class.
 	 */
 	public int getType() {
-		return 0;
+		return type;
 	}
 
 	/**
 	 * = this piece's x location.
 	 */
 	public int getX() {
-		return 0;
+		return position[0];
 	}
 
 	/**
 	 * = this piece's y location.
 	 */
 	public int getY() {
-		return 0;
+		return position[1];
 	}
 
 	/**
 	 * = this piece's color.
 	 */
 	public Color getColor() {
-		return null;
+		return this.color;
 	}
 
 	/**
@@ -61,28 +71,28 @@ public abstract class Piece {
 	 * = "This piece has already acted this round".
 	 */
 	public boolean hasActed() {
-		return true;
+		return act;
 	}
 
 	/**
 	 * = the map this piece is on.
 	 */
 	public Map getMap() {
-		return null;
+		return map;
 	}
 
 	/**
 	 * Set this piece's x location to x.
 	 */
 	public void setX(int x) {
-
+		position[0] = x;
 	}
 
 	/**
 	 * Set this piece's y location to y.
 	 */
 	public void setY(int y) {
-
+		position[1] = y;
 	}
 
 	/**
@@ -91,14 +101,15 @@ public abstract class Piece {
 	 * c is Color.RED, Color.GREEN, or Color.YELLOW.
 	 */
 	public void setColor(Color c) {
-
+		color = c;
+		if (type == Piece.BLOCK) color = Color.WHITE;
 	}
 
 	/**
 	 * Set the state of this piece to the value of acted.
 	 */
 	public void setActed(boolean acted) {
-
+		this.act = acted;
 	}
 
 	/**
@@ -114,6 +125,10 @@ public abstract class Piece {
 	 */
 	public static int rand(int lo, int hi) {
 		return (int) (Math.random() * (hi - lo + 1)) + lo;
+	}
+
+	public static Color randColor(Color[] colors) {
+		return colors[rand(0, colors.length - 1)];
 	}
 
 }
