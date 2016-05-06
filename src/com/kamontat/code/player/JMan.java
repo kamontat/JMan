@@ -1,5 +1,6 @@
-package src.com.kamontat.code.obstacle;
+package src.com.kamontat.code.player;
 
+import src.com.kamontat.code.obstacle.Piece;
 import src.com.kamontat.gui.Map;
 
 import java.awt.*;

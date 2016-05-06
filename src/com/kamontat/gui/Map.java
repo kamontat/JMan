@@ -1,6 +1,6 @@
 package src.com.kamontat.gui;
 
-import src.com.kamontat.code.obstacle.JMan;
+import src.com.kamontat.code.player.JMan;
 import src.com.kamontat.code.obstacle.Piece;
 
 import javax.swing.*;
@@ -36,13 +36,6 @@ public class Map implements ActionListener {
 	private Piece[][] grid; //grid of Pieces that makes up the game.
 
 	private JMan jMan; //the J*Man piece in this map.
-
-	/**
-	 * Start a game 20x20 game wih 10 walkers, 10 pillars, and 20 blocks.
-	 */
-	public static void main(String[] pars) {
-		Map m = new Map();
-	}
 
 	/**
 	 * Constructor: a default 20 x 20 game with 10 walkers, 10 pillars,
@@ -263,7 +256,7 @@ public class Map implements ActionListener {
 	/**
 	 * Process a button push: call a function accordingly.
 	 * Thus, if the button was Up, Down, Left, or Right, call
-	 * function src.com.kamontat.code.obstacle.JMan.step with arg 0, 1, 2 or 3 respectively, and
+	 * function src.com.kamontat.code.player.JMan.step with arg 0, 1, 2 or 3 respectively, and
 	 * then call procedure act().
 	 * <p>
 	 * If the button newGame, open a dialog and ask whether a new game
