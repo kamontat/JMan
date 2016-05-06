@@ -1,6 +1,7 @@
 package src.com.kamontat.gui;
 
 import src.com.kamontat.code.obstacle.Block;
+import src.com.kamontat.code.obstacle.Walker;
 import src.com.kamontat.code.player.JMan;
 import src.com.kamontat.code.obstacle.Piece;
 
@@ -180,6 +181,9 @@ public class Map implements ActionListener {
 					break;
 				case Piece.BLOCK:
 					grid[x][y] = new Block(x, y, this);
+					break;
+				case Piece.WALKER:
+					grid[x][y] = new Walker(x, y, Piece.rand(0, 2), this);
 					break;
 			}
 		}

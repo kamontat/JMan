@@ -9,7 +9,6 @@ import java.awt.*;
  * @since 6/5/59 - 22:43
  */
 public class Block extends Piece {
-
 	private Map map;
 
 	public Block(int x, int y, Map m) {
