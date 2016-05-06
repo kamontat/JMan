@@ -42,10 +42,69 @@ public class JMan extends Piece {
 		setY(y);
 	}
 
+
+	public void checkHit(int dir) {
+		int[] position = new int[]{getX(), getY()};
+
+		switch (dir) {
+			case 0:
+				if (!map.isEmpty(position[0], position[1] - 1)) {
+					if (checkColor(map.pieceAt(position[0], --position[1]))) {
+						map.removePieceAt(position[0], position[1]);
+						canStep(dir);
+					}
+				}
+				break;
+			case 1:
+				if (!map.isEmpty(position[0], position[1] + 1)) {
+					if (checkColor(map.pieceAt(position[0], ++position[1]))) {
+						map.removePieceAt(position[0], position[1]);
+						canStep(dir);
+					}
+				}
+				break;
+			case 2:
+				if (!map.isEmpty(position[0] - 1, position[1])) {
+					if (checkColor(map.pieceAt(--position[0], position[1]))) {
+						map.removePieceAt(position[0], position[1]);
+						canStep(dir);
+					}
+				}
+				break;
+			case 3:
+				if (!map.isEmpty(position[0] + 1, position[1])) {
+					if (checkColor(map.pieceAt(++position[0], position[1]))) {
+						map.removePieceAt(position[0], position[1]);
+						canStep(dir);
+					}
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	public boolean checkColor(Piece obstacle) {
+		if (getColor().equals(Color.GREEN) && obstacle.getColor().equals(Color.RED)) {
+			setColor(obstacle.getColor());
+			return true;
+		}
+		if (getColor().equals(Color.YELLOW) && obstacle.getColor().equals(Color.GREEN)) {
+			setColor(obstacle.getColor());
+			return true;
+		}
+		if (getColor().equals(Color.RED) && obstacle.getColor().equals(Color.YELLOW)) {
+			setColor(obstacle.getColor());
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * J*Man should move based on what button is pushed.
 	 * This method is not used.
 	 */
+
 	public void act() {
 		return;
 	}

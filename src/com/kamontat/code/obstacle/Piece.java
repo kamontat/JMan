@@ -118,34 +118,43 @@ public abstract class Piece {
 
 
 	/**
-	 * Move one step based on the value of i:
+	 * Move one canStep based on the value of i:
 	 * 0 = up, 1 = down, 2 = left, 3 = right.
 	 */
-	public void step(int i) {
+	public boolean canStep(int i) {
 		setActed(true);
 
 		int[] position = new int[]{getX(), getY()};
 
 		switch (i) {
 			case 0:
-				if (map.isEmpty(position[0], position[1] - 1))
+				if (map.isEmpty(position[0], position[1] - 1)) {
 					map.move(position[0], position[1], position[0], --position[1]);
+					return true;
+				}
 				break;
 			case 1:
-				if (map.isEmpty(position[0], position[1] + 1))
+				if (map.isEmpty(position[0], position[1] + 1)) {
 					map.move(position[0], position[1], position[0], ++position[1]);
+					return true;
+				}
 				break;
 			case 2:
-				if (map.isEmpty(position[0] - 1, position[1]))
+				if (map.isEmpty(position[0] - 1, position[1])) {
 					map.move(position[0], position[1], --position[0], position[1]);
+					return true;
+				}
 				break;
 			case 3:
-				if (map.isEmpty(position[0] + 1, position[1]))
+				if (map.isEmpty(position[0] + 1, position[1])) {
 					map.move(position[0], position[1], ++position[0], position[1]);
+					return true;
+				}
 				break;
 			default:
 				break;
 		}
+		return false;
 	}
 
 	/**

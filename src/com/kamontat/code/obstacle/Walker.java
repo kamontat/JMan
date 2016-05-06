@@ -26,7 +26,7 @@ public class Walker extends Piece {
 	public void act() {
 		if (rand(1, 3) == 1) {
 			int rand = rand(0, 3);
-			step(rand);
+			canStep(rand);
 		}
 	}
 }

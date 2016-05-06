@@ -1,10 +1,7 @@
 package src.com.kamontat.gui;
 
-import src.com.kamontat.code.obstacle.Block;
-import src.com.kamontat.code.obstacle.Pillar;
-import src.com.kamontat.code.obstacle.Walker;
+import src.com.kamontat.code.obstacle.*;
 import src.com.kamontat.code.player.JMan;
-import src.com.kamontat.code.obstacle.Piece;
 
 import javax.swing.*;
 import java.awt.*;
@@ -172,7 +169,7 @@ public class Map implements ActionListener {
 	 * If (x, y) is in the grid and empty, put a new piece of type typ
 	 * in location (x, y); and,
 	 * if the new piece is J*Man, store it in field jMan.
-	 * Precondition: typ is one of the piece constants in class src.com.kamontat.code.obstacle.Piece.
+	 * Precondition: typ is one of the piece constants in class Piece.
 	 */
 	public void putNew(int typ, int x, int y) {
 		Color color = Piece.randColor(new Color[]{Color.RED, Color.YELLOW, Color.GREEN});
@@ -213,7 +210,7 @@ public class Map implements ActionListener {
 	}
 
 	/**
-	 * = the src.com.kamontat.code.obstacle.Piece on tile (x, y) (null if (x, y) is outside the grid or contains null).
+	 * = Piece on tile (x, y) (null if (x, y) is outside the grid or contains null).
 	 */
 	public Piece pieceAt(int x, int y) {
 		if (isInGrid(x, y)) {
@@ -223,9 +220,18 @@ public class Map implements ActionListener {
 	}
 
 	/**
-	 * Move the src.com.kamontat.code.obstacle.Piece at (fromX, fromY) to (toX, toY) on the grid,
+	 * if have piece in x, y position remove it to null
+	 */
+	public void removePieceAt(int x, int y) {
+		if (isInGrid(x, y)) {
+			grid[x][y] = null;
+		}
+	}
+
+	/**
+	 * Move the Piece at (fromX, fromY) to (toX, toY) on the grid,
 	 * changing the position at (fromX, fromY) to null;
-	 * change the position in the src.com.kamontat.code.obstacle.Piece accordingly.
+	 * change the position in the Piece accordingly.
 	 * The piece originall in (toX, toY) is permanently deleted.
 	 * Precondition:
 	 * 1. (toX, toY) is inside the grid.
@@ -267,7 +273,7 @@ public class Map implements ActionListener {
 	/**
 	 * Process a button push: call a function accordingly.
 	 * Thus, if the button was Up, Down, Left, or Right, call
-	 * function src.com.kamontat.code.player.JMan.step with arg 0, 1, 2 or 3 respectively, and
+	 * function src.com.kamontat.code.player.JMan.canStep with arg 0, 1, 2 or 3 respectively, and
 	 * then call procedure act().
 	 * <p>
 	 * If the button newGame, open a dialog and ask whether a new game
@@ -277,16 +283,16 @@ public class Map implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == bUp) {
-			jMan.step(0);
+			if (!jMan.canStep(0)) jMan.checkHit(0);
 			act();
 		} else if (e.getSource() == bDown) {
-			jMan.step(1);
+			if (!jMan.canStep(1)) jMan.checkHit(1);
 			act();
 		} else if (e.getSource() == bLeft) {
-			jMan.step(2);
+			if (!jMan.canStep(2)) jMan.checkHit(2);
 			act();
 		} else if (e.getSource() == bRight) {
-			jMan.step(3);
+			if (!jMan.canStep(3)) jMan.checkHit(3);
 			act();
 		} else if (e.getSource() == bnewGame) {
 			if (JOptionPane.showConfirmDialog(frame, "Start a new game of the standard size?", "New Game?", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
