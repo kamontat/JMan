@@ -1,3 +1,7 @@
+package src.com.kamontat.code.obstacle;
+
+import src.com.kamontat.gui.Map;
+
 import java.awt.*;
 
 /**
@@ -10,11 +14,11 @@ public class JMan extends Piece {
 	private int[] position;
 
 	/**
-	 * Constructor: a new J*Man at position (x, y) on Map m
+	 * Constructor: a new J*Man at position (x, y) on src.com.kamontat.gui.Map m
 	 * with color red if c = 0, green if c = 1, and yellow if c = 2.
 	 */
 	public JMan(int x, int y, int c, Map m) {
-		super(Piece.JMAN, m);
+		super(JMAN, m);
 		// Complete this
 		map = m;
 		position = new int[]{x, y};
@@ -25,12 +29,12 @@ public class JMan extends Piece {
 	}
 
 	/**
-	 * Constructor: a new J*Man at position (x, y) on Map m
+	 * Constructor: a new J*Man at position (x, y) on src.com.kamontat.gui.Map m
 	 * with color c. Precondition: c is one of
 	 * Color.RED, Color.GREEN, and Color.YELLOW.
 	 */
 	public JMan(int x, int y, Color c, Map m) {
-		super(Piece.JMAN, m);
+		super(JMAN, m);
 		// Complete this;
 		map = m;
 		position = new int[]{x, y};

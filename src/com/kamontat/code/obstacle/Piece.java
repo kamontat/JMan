@@ -1,3 +1,7 @@
+package src.com.kamontat.code.obstacle;
+
+import src.com.kamontat.gui.Map;
+
 import java.awt.*;
 
 /**
@@ -21,7 +25,7 @@ public abstract class Piece {
 	private boolean act;
 
 	/**
-	 * Constructor: a Piece on Map m with type t.
+	 * Constructor: a src.com.kamontat.code.obstacle.Piece on src.com.kamontat.gui.Map m with type t.
 	 * Precondition: type is one of the four constants of this class.
 	 */
 	public Piece(int t, Map m) {
