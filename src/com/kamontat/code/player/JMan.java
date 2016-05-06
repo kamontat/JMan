@@ -12,7 +12,6 @@ import java.awt.*;
 public class JMan extends Piece {
 
 	private Map map;
-	private int[] position;
 
 	/**
 	 * Constructor: a new J*Man at position (x, y) on src.com.kamontat.gui.Map m
@@ -22,7 +21,6 @@ public class JMan extends Piece {
 		super(JMAN, m);
 		// Complete this
 		map = m;
-		position = new int[]{x, y};
 
 		setColor(c == 0 ? Color.RED: c == 1 ? Color.GREEN: Color.YELLOW);
 		setX(x);
@@ -38,7 +36,6 @@ public class JMan extends Piece {
 		super(JMAN, m);
 		// Complete this;
 		map = m;
-		position = new int[]{x, y};
 
 		setColor(c);
 		setX(x);
@@ -59,7 +56,9 @@ public class JMan extends Piece {
 	 */
 	public void step(int i) {
 		setActed(true);
-		System.out.printf("x: %d, y: %d\n", position[0], position[1]);
+
+		int[] position = new int[]{getX(), getY()};
+
 		switch (i) {
 			case 0:
 				if (map.isEmpty(position[0], position[1] - 1))
@@ -80,8 +79,6 @@ public class JMan extends Piece {
 			default:
 				break;
 		}
-
-		System.out.printf("x: %d, y: %d\n", position[0], position[1]);
 	}
 
 	/**

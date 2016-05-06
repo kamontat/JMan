@@ -1,5 +1,6 @@
 package src.com.kamontat.gui;
 
+import src.com.kamontat.code.obstacle.Block;
 import src.com.kamontat.code.player.JMan;
 import src.com.kamontat.code.obstacle.Piece;
 
@@ -172,17 +173,14 @@ public class Map implements ActionListener {
 	public void putNew(int typ, int x, int y) {
 		Color color = Piece.randColor(new Color[]{Color.RED, Color.YELLOW, Color.GREEN});
 		if (isEmpty(x, y)) {
-			if (typ == Piece.JMAN) {
-				jMan = new JMan(x, y, color, this);
-				grid[x][y] = jMan;
-			} else {
-				grid[x][y] = new Piece(typ, this) {
-					@Override
-					public void act() {
-
-					}
-				};
-				grid[x][y].setColor(color);
+			switch (typ) {
+				case Piece.JMAN:
+					jMan = new JMan(x, y, color, this);
+					grid[x][y] = jMan;
+					break;
+				case Piece.BLOCK:
+					grid[x][y] = new Block(x, y, this);
+					break;
 			}
 		}
 	}
