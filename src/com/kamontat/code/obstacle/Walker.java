@@ -28,9 +28,5 @@ public class Walker extends Piece {
 			int rand = rand(0, 3);
 			step(rand);
 		}
-
-		if (rand(1, 3) == 1) {
-			setColor(randColor(new Color[]{Color.RED, Color.GREEN, Color.YELLOW}));
-		}
 	}
 }

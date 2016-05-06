@@ -1,6 +1,7 @@
 package src.com.kamontat.gui;
 
 import src.com.kamontat.code.obstacle.Block;
+import src.com.kamontat.code.obstacle.Pillar;
 import src.com.kamontat.code.obstacle.Walker;
 import src.com.kamontat.code.player.JMan;
 import src.com.kamontat.code.obstacle.Piece;
@@ -99,6 +100,8 @@ public class Map implements ActionListener {
 		frame.getContentPane().add(board, BorderLayout.CENTER);
 		frame.getContentPane().add(instructBox, BorderLayout.SOUTH);
 
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
 		frame.pack();
 		frame.setLocation(5, 30);
 		frame.setResizable(false);
@@ -184,6 +187,12 @@ public class Map implements ActionListener {
 					break;
 				case Piece.WALKER:
 					grid[x][y] = new Walker(x, y, Piece.rand(0, 2), this);
+					break;
+				case Piece.PILLAR:
+					grid[x][y] = new Pillar(x, y, Piece.rand(0, 2), this);
+					break;
+				default:
+					/* this won't stay in this line */
 					break;
 			}
 		}
