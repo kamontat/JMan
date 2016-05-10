@@ -29,7 +29,6 @@ public abstract class Piece {
 	 * Precondition: type is one of the four constants of this class.
 	 */
 	public Piece(int t, Map m) {
-
 		type = t;
 		map = m;
 	}
@@ -67,8 +66,17 @@ public abstract class Piece {
 	 * = the empty string if it is not one of red, green, yellow, or white
 	 */
 	public String getColorWord() {
-		// complete this
-		return "";
+		if (color.equals(Color.RED)) {
+			return "Red";
+		} else if (color.equals(Color.GREEN)) {
+			return "Green";
+		} else if (color.equals(Color.YELLOW)) {
+			return "Yellow";
+		} else if (color.equals(Color.WHITE)) {
+			return "White";
+		} else {
+			return "";
+		}
 	}
 
 	/**
@@ -123,9 +131,6 @@ public abstract class Piece {
 	 */
 	public boolean canStep(int i) {
 		setActed(true);
-
-		int[] position = new int[]{getX(), getY()};
-
 		switch (i) {
 			case 0:
 				if (map.isEmpty(position[0], position[1] - 1)) {
