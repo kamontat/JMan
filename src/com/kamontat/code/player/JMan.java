@@ -85,6 +85,11 @@ public class JMan extends Piece {
 	}
 
 	public boolean checkColor(Piece obstacle) {
+		// when hit the wall
+		if (obstacle == null) {
+			return false;
+		}
+
 		if (getColor().equals(Color.GREEN) && obstacle.getColor().equals(Color.RED)) {
 			setColor(obstacle.getColor());
 			return true;
